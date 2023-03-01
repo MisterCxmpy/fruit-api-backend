@@ -38,6 +38,24 @@ app.get("/fruits/:name", (req, res) => {
   }
 });
 
+const ids = fruitsList.map((fruit) => fruit.id);
+let maxId = Math.max(...ids);
+
+app.post("/fruits", (req, res) => {
+  const fruit = fruitsList.find((fruit) => fruit.name.toLowerCase() == req.body.name.toLowerCase());
+
+  if (!fruit) {
+      res.status(409).send();
+  } else {
+      maxId += 1;
+      req.body.id = maxId;
+
+      fruitsList.push(req.body);
+
+      res.status(201).send(req.body);
+  }
+});
+
 app.listen(port, () => {
   console.log(`App is now listening to ${port}`);
 });
