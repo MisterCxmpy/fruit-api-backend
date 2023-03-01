@@ -1,0 +1,12 @@
+{
+  "message": "Welcome to the Fruity Vice API",
+  "numberOfFruits": 40,
+  "1 - 5": "Apple, Apricot, Avocado, Banana, Blackberry",
+  "6 - 10": "Blueberry, Cherry, Cranberry, Dragonfruit, Durian",
+  "11 - 15": "Feijoa, Fig, Gooseberry, Grape, GreenApple",
+  "16 - 20": "Guava, Kiwi, Kiwifruit, Lemon, Lime",
+  "21 - 25": "Lingonberry, Lychee, Mango, Melon, Morus",
+  "26 - 30": "Orange, Papaya, Passionfruit, Peach, Pear",
+  "31 - 35": "Persimmon, Pineapple, Pitahaya, Plum, Pomegranate",
+  "36 - 40": "Raspberry, Strawberry, Tangerine, Tomato, Watermelon"
+}
