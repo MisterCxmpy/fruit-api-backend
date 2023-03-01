@@ -1,6 +1,7 @@
 const express = require("express");
+require("dotenv").config()
 const app = express();
-const port = 8080;
+const port = process.env.PORT;
 
 const fruitsHome = require("./json/fruits-home.json");
 const fruitsError = require("./json/fruits-error.json");
