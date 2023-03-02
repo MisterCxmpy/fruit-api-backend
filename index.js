@@ -49,6 +49,19 @@ app.post("/fruits/add", (req, res) => {
     }
 });
 
+app.delete("/fruits/delete/:name", (req, res) => {
+  const name = req.params.name.toLowerCase();
+  const fruitIndex = fruitsList.findIndex((fruit) => fruit.name.toLowerCase() == name);
+
+  if (fruitIndex == -1) {
+      res.status(404).send();
+  } else {
+      fruitsList.splice(fruitIndex, 1);
+
+      res.status(204).send();
+  }
+});
+
 app.listen(port, () => {
   console.log(`App is now listening to ${port}`);
 });
