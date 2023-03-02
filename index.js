@@ -12,26 +12,19 @@ const fruitsList = require("./json/fruits.json");
 app.use(cors());
 app.use(express.json());
 
-app.get("/", async (req, res) => {
-  try {
-    res.status(200).send(fruitsHome);
-  } catch (e) {
-    res.status(404).send(fruitsHome);
-  }
+app.get("/", (req, res) => {
+  res.send(fruitsHome);
 });
 
 app.get("/fruits", (req, res) => {
-  try {
-    res.status(200).send(fruitsList);
-  } catch (e) {
-    res.status(404).send(fruitsList);
-  }
+  res.send(fruitsList);
 });
 
 app.get("/fruits/:name", (req, res) => {
   const name = req.params.name.toLowerCase();
   const fruit = fruitsList.find((fruit) => fruit.name.toLowerCase() == name);
-  if (!fruit) {
+
+  if (fruit == undefined) {
       res.status(404).send(fruitsError);
   } else {
       res.send(fruit);
@@ -41,19 +34,19 @@ app.get("/fruits/:name", (req, res) => {
 const ids = fruitsList.map((fruit) => fruit.id);
 let maxId = Math.max(...ids);
 
-app.post("/fruits", (req, res) => {
-  const fruit = fruitsList.find((fruit) => fruit.name.toLowerCase() == req.body.name.toLowerCase());
+app.post("/fruits/add", (req, res) => {
+    const fruit = fruitsList.find((fruit) => fruit.name.toLowerCase() == req.body.name.toLowerCase());
 
-  if (!fruit) {
-      res.status(409).send();
-  } else {
-      maxId += 1;
-      req.body.id = maxId;
+    if (fruit != undefined) {
+        res.status(409).send();
+    } else {
+        maxId += 1;
+        req.body.id = maxId;
 
-      fruitsList.push(req.body);
+        fruitsList.push(req.body);
 
-      res.status(201).send(req.body);
-  }
+        res.status(201).send(req.body);
+    }
 });
 
 app.listen(port, () => {
